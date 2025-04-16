@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
+
+:root {
+  --primary-bg: #1a1040;
+  --accent-purple: #9370DB;
+  --accent-blue: #4B0082;
+  --text-color: #E6E6FA;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, var(--primary-bg), var(--accent-blue));
+  color: var(--text-color);
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.universe-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hidden-ser {
+  position: fixed;
+  font-family: "Parisienne", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: min(120px, 15vw);
+  opacity: 0.03;
+  color: var(--accent-purple);
+  user-select: none;
+  z-index: 10;
+}
+
+.celestial-object {
+  position: absolute;
+  cursor: pointer;
+  border-radius: 50%;
+  backdrop-filter: blur(5px);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transition: transform 0.3s ease;
+  z-index: 1;
+  will-change: transform;
+  transform-origin: center;
+}
+
+@media (max-width: 768px) {
+  .celestial-object {
+    transform: scale(0.8);
+  }
+}
+
+.celestial-object.star {
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  border-radius: initial;
+}
+
+.celestial-object.crescent {
+  border-radius: 50%;
+  box-shadow: 15px 15px 0 0 rgba(255, 255, 255, 0.1);
+  transform: rotate(-45deg);
+}
+
+.celestial-object.ring {
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  background: transparent !important;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+.celestial-object::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  border-radius: inherit;
+  /* filter: blur(8px); */
+  z-index: -1;
+}
+
+.celestial-object:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.message-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(147, 112, 219, 0.15);
+  backdrop-filter: blur(12px);
+  padding: 2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-color);
+  text-align: center;
+  z-index: 1000;
+  max-width: min(80vw, 500px);
+  width: auto;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  margin: 1rem;
+  cursor: grab;
+  user-select: none;
+}
+
+@media (max-width: 768px) {
+  .message-popup {
+    padding: 1.5rem;
+    margin: 0.5rem;
+    max-width: 90vw;
+    max-height: 70vh;
+  }
+}
+
+.message-popup:active {
+  cursor: grabbing;
+}
+
+.message-close {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.message-close:hover {
+  transform: scale(1.2);
+}
+
+.message-image {
+  max-width: 100%;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 1.5rem;
+  border-radius: 15px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+@media (max-width: 768px) {
+  .message-image {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 1rem;
+  }
+}
+
+.message-content {
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  line-height: 1.6;
+  color: var(--text-color);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.stars {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
