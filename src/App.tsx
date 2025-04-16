@@ -233,7 +233,7 @@ const celestialObjects: CelestialObject[] = [
 function App() {
   const [selectedObject, setSelectedObject] = useState<CelestialObject | null>(null);
   const [serClicks, setSerClicks] = useState(0);
-  const [positions, setPositions] = useState<{ [key: number]: { x: number; y: number } }>({});
+  const [_, setPositions] = useState<{ [key: number]: { x: number; y: number } }>({});
   const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 });
 
   const handleCelestialClick = (object: CelestialObject) => {
@@ -282,7 +282,7 @@ function App() {
       </motion.div>
       
       {celestialObjects.map((object) => {
-        const position = positions[object.id] || { x: 0, y: 0 };
+        // const position = positions[object.id] || { x: 0, y: 0 };
         const baseX = parseFloat(object.x) / 100 * window.innerWidth;
         const baseY = parseFloat(object.y) / 100 * window.innerHeight;
 
