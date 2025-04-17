@@ -170,8 +170,9 @@ body {
 .message-popup {
   position: fixed;
   top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 10%;
+  right: 10%;
+  transform: translate(-50%, 0);
   background: rgba(147, 112, 219, 0.15);
   backdrop-filter: blur(12px);
   padding: 2rem;
