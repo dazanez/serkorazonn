@@ -86,14 +86,13 @@ body {
   opacity: 0.03;
   color: var(--accent-purple);
   user-select: none;
-  z-index: 10;
 }
 
 .celestial-object {
   position: absolute;
   cursor: pointer;
   border-radius: 50%;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(1px);
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   transition: transform 0.3s ease;
@@ -134,13 +133,38 @@ body {
   height: 100%;
   background: inherit;
   border-radius: inherit;
-  /* filter: blur(8px); */
+  filter: blur(.5px);
   z-index: -1;
 }
 
 .celestial-object:hover {
   transform: scale(1.1);
   background: rgba(255, 255, 255, 0.2);
+}
+
+.heart {
+  /* width: 50px; */
+  border-radius: 0;
+  aspect-ratio: 1;
+  --_m: radial-gradient(#000 69%, #0000 70%) 84.5%/50%;
+  -webkit-mask-box-image: var(--_m);
+  mask-border: var(--_m);
+  clip-path: polygon(-42% 0, 50% 91%, 142% 0);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 .message-popup {
@@ -222,8 +246,32 @@ body {
   overflow-wrap: break-word;
 }
 
+.special-popup {
+  background: linear-gradient(135deg, rgba(255, 192, 203, 0.9), rgba(255, 20, 147, 0.9)) !important;
+  border: 2px solid #ff69b4 !important;
+  box-shadow: 0 0 20px rgba(255, 105, 180, 0.6) !important;
+}
+
+.special-popup .message-content {
+  color: white !important;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
 .stars {
   position: fixed;
   width: 100%;
   height: 100%;
+}
+
+.ser-counter {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  color: var(--accent-purple);
+  font-family: cursive;
+  opacity: 0.8;
+  z-index: 1000;
+  text-shadow: 0 0 5px rgba(147, 112, 219, 0.5);
 }
