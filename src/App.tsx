@@ -299,7 +299,8 @@ function App() {
     }));
   };
 
-  const handleStartClick = () => {
+  const handleStartClick = (e: React.MouseEvent) => {
+    e?.stopPropagation();
     setShowWelcome(false);
     setAutoPlayAudio(true);
   };
@@ -309,7 +310,10 @@ function App() {
       <Stars />
       <AudioPlayer autoPlayOnMount={autoPlayAudio} />
       <AnimatePresence>
-        <WelcomePopup isVisible={showWelcome} onStartClick={handleStartClick} />
+        <WelcomePopup 
+          isVisible={showWelcome} 
+          onStartClick={handleStartClick} 
+        />
       </AnimatePresence>
       <div className="ser-counter">{serClicks}</div>
       <motion.div 

@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 
 interface WelcomePopupProps {
-  onStartClick: () => void;
+  onStartClick: (e: React.MouseEvent) => void;
   isVisible: boolean;
 }
 
@@ -14,6 +14,7 @@ const WelcomePopup = ({ onStartClick, isVisible }: WelcomePopupProps) => {
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.5 }}
+      onClick={(e) => e.stopPropagation()}
       style={{
         display: 'flex',
         flexDirection: 'column',
@@ -28,7 +29,7 @@ const WelcomePopup = ({ onStartClick, isVisible }: WelcomePopupProps) => {
         Antes de empezar, activemos el audio
       </p>
       <button
-        onClick={onStartClick}
+        onClick={(e) => onStartClick(e)}
         style={{
           background: 'rgba(147, 112, 219, 0.3)',
           border: '1px solid rgba(255, 255, 255, 0.3)',
