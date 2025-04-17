@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Stars from './components/Stars';
+import AudioPlayer from './components/AudioPlayer';
+import WelcomePopup from './components/WelcomePopup';
 import './App.css';
 
 interface Message {
@@ -255,6 +257,8 @@ function App() {
   const [visibleObjectsCount, setVisibleObjectsCount] = useState(1);
   const [_, setPositions] = useState<{ [key: number]: { x: number; y: number } }>({});
   const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 });
+  const [showWelcome, setShowWelcome] = useState(true);
+  const [autoPlayAudio, setAutoPlayAudio] = useState(false);
 
   const handleCelestialClick = (object: CelestialObject) => {
     console.log('Celestial object clicked:', object.id);
@@ -295,9 +299,18 @@ function App() {
     }));
   };
 
+  const handleStartClick = () => {
+    setShowWelcome(false);
+    setAutoPlayAudio(true);
+  };
+
   return (
     <div className="universe-container" onClick={closeMessage}>
       <Stars />
+      <AudioPlayer autoPlayOnMount={autoPlayAudio} />
+      <AnimatePresence>
+        <WelcomePopup isVisible={showWelcome} onStartClick={handleStartClick} />
+      </AnimatePresence>
       <div className="ser-counter">{serClicks}</div>
       <motion.div 
         className="hidden-ser"
@@ -317,15 +330,6 @@ function App() {
       >
         SER
       </motion.div>
-
-      <audio
-        autoPlay
-        loop
-        id="background-music"
-        style={{ display: 'none' }}
-      >
-        <source src="/background-music.mp3" type="audio/mp3" />
-      </audio>
       
       {visibleObjects.map((object) => {
         const baseX = parseFloat(object.x) / 100 * window.innerWidth;
